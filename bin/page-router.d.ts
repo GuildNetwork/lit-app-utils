@@ -8,8 +8,7 @@ export interface PageElement extends HTMLElement {
 export declare class PageRouter extends LitElement {
     private currentPage;
     private pendingSlotResolve?;
-    private _slot?;
-    _render(): TemplateResult;
+    render(): TemplateResult;
     connectedCallback(): void;
     slotChange(): void;
     readonly pageSlot: HTMLSlotElement;

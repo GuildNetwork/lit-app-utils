@@ -1,6 +1,6 @@
 {
   "name": "lit-app-utils",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "App utils",
   "main": "bin/index.js",
   "module": "bin/index.js",
@@ -20,10 +20,11 @@
   },
   "homepage": "https://github.com/pshihn/lit-app-utils#readme",
   "devDependencies": {
-    "@types/node": "^10.11.0",
-    "typescript": "^3.0.3"
+    "@types/node": "^10.11.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.1"
   },
   "dependencies": {
-    "@polymer/lit-element": "^0.5.2"
+    "@polymer/lit-element": "^0.6.2"
   }
 }

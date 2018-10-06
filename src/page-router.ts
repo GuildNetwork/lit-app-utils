@@ -1,5 +1,5 @@
-import { LitElement } from '@polymer/lit-element';
-import { TemplateResult, html } from 'lit-html';
+import { LitElement, html } from '@polymer/lit-element';
+import { TemplateResult } from 'lit-html';
 import { bus } from './message-bus';
 import { Route } from './router';
 
@@ -11,9 +11,8 @@ export interface PageElement extends HTMLElement {
 export class PageRouter extends LitElement {
   private currentPage: PageElement | null = null;
   private pendingSlotResolve?: (value?: HTMLElement[] | PromiseLike<HTMLElement[]> | undefined) => void;
-  private _slot?: HTMLSlotElement;
 
-  _render(): TemplateResult {
+  render(): TemplateResult {
     return html`
     <style>
       :host {
@@ -28,7 +27,7 @@ export class PageRouter extends LitElement {
         display: none !important;
       }
     </style>
-    <slot id="slot" on-slotchange="${() => this.slotChange()}"></slot>
+    <slot id="slot" @slotchange="${this.slotChange}"></slot>
     `;
   }
 
@@ -49,10 +48,7 @@ export class PageRouter extends LitElement {
   }
 
   get pageSlot(): HTMLSlotElement {
-    if (!this._slot) {
-      this._slot = this.shadowRoot!.querySelector('slot') as HTMLSlotElement;
-    }
-    return this._slot;
+    return this.shadowRoot!.querySelector('slot') as HTMLSlotElement;
   }
 
   private get slotElements(): HTMLElement[] {

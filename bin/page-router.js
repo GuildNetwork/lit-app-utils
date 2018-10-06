@@ -1,12 +1,11 @@
-import { LitElement } from '@polymer/lit-element';
-import { html } from 'lit-html';
+import { LitElement, html } from '@polymer/lit-element';
 import { bus } from './message-bus';
 export class PageRouter extends LitElement {
     constructor() {
         super(...arguments);
         this.currentPage = null;
     }
-    _render() {
+    render() {
         return html `
     <style>
       :host {
@@ -21,7 +20,7 @@ export class PageRouter extends LitElement {
         display: none !important;
       }
     </style>
-    <slot id="slot" on-slotchange="${() => this.slotChange()}"></slot>
+    <slot id="slot" @slotchange="${this.slotChange}"></slot>
     `;
     }
     connectedCallback() {
@@ -39,10 +38,7 @@ export class PageRouter extends LitElement {
         }
     }
     get pageSlot() {
-        if (!this._slot) {
-            this._slot = this.shadowRoot.querySelector('slot');
-        }
-        return this._slot;
+        return this.shadowRoot.querySelector('slot');
     }
     get slotElements() {
         const list = [];
